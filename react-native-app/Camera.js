@@ -21,12 +21,10 @@ export default function CameraScreen() {
   }, []);
 
   if (permission === null) {
-    // Camera permission is not yet determined
     return <View />;
   }
 
   if (permission !== 'granted') {
-    // Camera permission is not granted
     return <Text>No access to camera</Text>;
   }
 
@@ -41,13 +39,11 @@ export default function CameraScreen() {
   function captureImage() {
     if(cameraRef.current) {
       cameraRef.current.takePictureAsync({ onPictureSaved: savePic })
-      console.log("f1 works")
       }
     }
   
   async function savePic(photo) {
     const imageUri = photo.uri;
-    console.log("f2 works")
     processImage(imageUri);
   }
   
@@ -58,16 +54,15 @@ export default function CameraScreen() {
       name: 'capturedImage.jpg',
       type: 'image/jpeg',
     });
-    console.log("sending form data")
-    console.log(formData)
-    const response = await axios.get('http://127.0.0.1:8000/process_image/', formData)
-      .then(response => {
-        console.log(response.data.message);
-      })
-      .catch(error => {
-        console.log(error);
-      });    
-    console.log('f3 works')
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/process_image/', formData);
+      const responseData = response.data;
+      if (responseData && responseData.message) {
+        console.log(responseData.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }  
 
   const navigation = useNavigation();
@@ -82,7 +77,7 @@ export default function CameraScreen() {
         </View>
         <Image style={styles.frame} source={require('./assets/frame.png')}/>
         <View style = {styles.captureContainer}>
-          <TouchableOpacity style={styles.button} onPress={captureImage}>
+          <TouchableOpacity style={styles.capture} onPress={captureImage}>
             <Image style={styles.flip} source={require('./assets/whitecircle.png')}/>
           </TouchableOpacity>
         </View>
@@ -119,25 +114,30 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     color: '#fff',
     position: 'absolute',
-    bottom: 140,
+    bottom: 120,
     textAlign: 'center',
     alignSelf: 'center',
-    
+    backgroundColor: 'rgba(0,100,20,0.7)',
+    padding: 20,
+    borderRadius: 8,
   },
   camera: {
     flex: 1,
+  },
+  capture: {
+    borderRadius: 4,
+    alignItems: 'center',
+    margin: 0,
+  },
+  captureContainer: {
+    position: 'absolute',
+    bottom: 100,
+    alignSelf: 'center',
   },
   buttonContainer: {
     position: 'absolute',
     top: 60,
     right: 20,
-    width: 70,
-    height: 50,
-  },
-  captureContainer: {
-    position: 'absolute',
-    top: 620,
-    right: 160,
     width: 70,
     height: 50,
   },

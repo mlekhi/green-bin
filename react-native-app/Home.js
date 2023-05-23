@@ -66,12 +66,12 @@ function Home() {
           <Sort
             title="Landfill"
             content="Non-recyclable plastics: Plastic bags, wrappers, packaging materials, and non-recyclable plastics marked with resin codes that are not accepted in recycling.
-            Non-recyclable paper products: Soiled or contaminated paper, wax-coated paper, used tissues, napkins, and paper plates.
-            Non-recyclable glass: Broken glass, ceramics, and mirrors.
-            Non-recyclable metals: Dirty or contaminated metals, such as metal utensils or metallic materials not suitable for recycling.
-            Non-recyclable textiles: Torn or heavily soiled fabrics, clothing, and linens that cannot be donated or repurposed.
-            Non-recyclable organic waste: Food waste, pet waste, and other organic materials that are not suitable for composting.
-            Hazardous materials: Chemicals, paints, batteries, electronics, and other hazardous household waste."
+            *Non-recyclable paper products: Soiled or contaminated paper, wax-coated paper, used tissues, napkins, and paper plates.
+            *Non-recyclable glass: Broken glass, ceramics, and mirrors.
+            *Non-recyclable metals: Dirty or contaminated metals, such as metal utensils or metallic materials not suitable for recycling.
+            *Non-recyclable textiles: Torn or heavily soiled fabrics, clothing, and linens that cannot be donated or repurposed.
+            *Non-recyclable organic waste: Food waste, pet waste, and other organic materials that are not suitable for composting.
+            *Hazardous materials: Chemicals, paints, batteries, electronics, and other hazardous household waste."
           />
           <TouchableOpacity style={styles.close} onPress={toggleLandfill}>
             <Text>Close</Text>
@@ -82,12 +82,12 @@ function Home() {
           <Sort
             title="Recycling"
             content="Paper: Clean and dry paper products such as newspapers, magazines, office paper, cardboard, and paperboard.
-            Plastic: Recyclable plastic containers, bottles, and packaging materials marked with the appropriate resin codes, such as PET or HDPE.
-            Glass: Clear, green, and brown glass bottles and jars.
-            Metal: Aluminum cans, steel cans, tin cans, and clean metal containers.
-            Electronics: Electronic waste, including computers, laptops, mobile phones, and other electronic devices.
-            Batteries: Rechargeable batteries and single-use batteries, which require special recycling procedures.
-            Textiles: Clean and undamaged textiles and clothing that can be recycled or donated."
+            *Plastic: Recyclable plastic containers, bottles, and packaging materials marked with the appropriate resin codes, such as PET or HDPE.
+            *Glass: Clear, green, and brown glass bottles and jars.
+            *Metal: Aluminum cans, steel cans, tin cans, and clean metal containers.
+            *Electronics: Electronic waste, including computers, laptops, mobile phones, and other electronic devices.
+            *Batteries: Rechargeable batteries and single-use batteries, which require special recycling procedures.
+            *Textiles: Clean and undamaged textiles and clothing that can be recycled or donated."
           />
           <TouchableOpacity style={styles.close} onPress={toggleRecycling}>
             <Text>Close</Text>
@@ -98,12 +98,12 @@ function Home() {
           <Sort
             title="Green Bin"
             content="Fruit and vegetable scraps: Peels, cores, and leftovers from fruits and vegetables.
-            Coffee grounds and tea bags: Used coffee grounds, tea bags, and loose tea leaves.
-            Yard waste: Leaves, grass clippings, branches, plants, and small twigs.
-            Food waste: Plate scrapings, expired food, bread, pasta, rice, and other cooked or uncooked food items.
-            Paper products: Uncoated paper plates, napkins, and tissues that are free from chemicals or contaminants.
-            Compostable materials: Compostable utensils, plates, and containers made from plant-based materials.
-            Eggshells: Cleaned eggshells can be included in the green bin for composting."
+            *Coffee grounds and tea bags: Used coffee grounds, tea bags, and loose tea leaves.
+            *Yard waste: Leaves, grass clippings, branches, plants, and small twigs.
+            *Food waste: Plate scrapings, expired food, bread, pasta, rice, and other cooked or uncooked food items.
+            *Paper products: Uncoated paper plates, napkins, and tissues that are free from chemicals or contaminants.
+            *Compostable materials: Compostable utensils, plates, and containers made from plant-based materials.
+            *Eggshells: Cleaned eggshells can be included in the green bin for composting."
           />
           <TouchableOpacity style={styles.close} onPress={toggleGreen}>
             <Text>Close</Text>
@@ -137,7 +137,7 @@ function Home() {
 export default Home;
 
 function Sort({title, content }) {
-  const contentList = content.split('\n').filter(item => item.trim() !== '');
+  const contentList = content.split('*').filter(item => item.trim() !== '');
   return (
     <View style={styles.modal}>
       <Text style={styles.title}>{title}</Text>  
